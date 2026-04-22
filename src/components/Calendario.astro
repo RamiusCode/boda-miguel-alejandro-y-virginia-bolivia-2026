@@ -34,7 +34,7 @@
                         <!-- TÍTULO -->
                         <div class="text-center mb-6">
                             <h2
-                                class="font-great-vibes text-[2.25rem] leading-tight text-[#122a4d]"
+                                class="font-great-vibes text-[2.25rem] leading-tight text-[#00695C]"
                                 id="titulo-calendario"
                             >
                                 Fecha Especial
@@ -44,12 +44,12 @@
                         <!-- NOMBRE DEL MES -->
                         <div class="text-center mb-4" id="seccion-mes">
                             <h3
-                                class="font-crimson text-xl uppercase tracking-wider text-[#122a4d] font-semibold"
+                                class="font-crimson text-xl uppercase tracking-wider text-[#00695C] font-semibold"
                                 id="nombre-mes"
                             >
                             </h3>
                             <p
-                                class="font-cormorant-sc text-sm text-[#122a4d] opacity-70 mt-1"
+                                class="font-cormorant-sc text-sm text-[#00695C] opacity-70 mt-1"
                                 id="anio-texto"
                             >
                             </p>
@@ -62,7 +62,7 @@
                         >
                             {
                                 ["D", "L", "M", "M", "J", "V", "S"].map((d) => (
-                                    <div class="text-center font-crimson text-xs text-[#122a4d] font-bold opacity-60">
+                                    <div class="text-center font-crimson text-xs text-[#00695C] font-bold opacity-60">
                                         {d}
                                     </div>
                                 ))
@@ -133,13 +133,13 @@
             const diaDiv = document.createElement("div");
             if (dia === DIA_ESPECIAL) {
                 diaDiv.className =
-                    "aspect-square flex items-center justify-center rounded-md bg-gradient-to-br from-[#122a4d] to-[#1e3f73] shadow-lg dia-cal";
+                    "aspect-square flex items-center justify-center rounded-md bg-gradient-to-br from-[#00695C] to-[#1e3f73] shadow-lg dia-cal";
                 diaDiv.id = "dia-especial-cal";
                 diaDiv.innerHTML = `<span class="font-crimson text-lg text-white font-bold">${dia}</span>`;
             } else {
                 diaDiv.className =
-                    "aspect-square flex items-center justify-center rounded-md hover:bg-[#122a4d]/10 transition-all dia-cal";
-                diaDiv.innerHTML = `<span class="font-crimson text-sm text-[#122a4d]">${dia}</span>`;
+                    "aspect-square flex items-center justify-center rounded-md hover:bg-[#00695C]/10 transition-all dia-cal";
+                diaDiv.innerHTML = `<span class="font-crimson text-sm text-[#00695C]">${dia}</span>`;
             }
             container.appendChild(diaDiv);
         }
@@ -164,8 +164,16 @@
                 trigger: "#card-calendario",
                 start: "top 80%",
                 onLeaveBack: () => {
-                    gsap.set("#boton-decorativo-cal", { opacity: 0, scale: 0, rotation: -180 });
-                    gsap.set("#card-principal-cal", { opacity: 0, y: 50, scale: 0.95 });
+                    gsap.set("#boton-decorativo-cal", {
+                        opacity: 0,
+                        scale: 0,
+                        rotation: -180,
+                    });
+                    gsap.set("#card-principal-cal", {
+                        opacity: 0,
+                        y: 50,
+                        scale: 0.95,
+                    });
                     gsap.set("#titulo-calendario", { opacity: 0, y: -20 });
                     gsap.set("#seccion-mes", { opacity: 0, y: 10 });
                     gsap.set("#seccion-dias-semana", { opacity: 0 });

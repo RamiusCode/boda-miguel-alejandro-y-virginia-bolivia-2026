@@ -3,7 +3,7 @@
     <div class="max-w-6xl mx-auto px-2 sm:px-6 lg:px-8">
         <!-- 💌 SOBRE CON FOTO -->
         <div
-            class="relative w-full flex justify-center mb-8 sm:mb-12 md:mb-16"
+            class="relative w-full flex justify-center mb-6 sm:mb-10 md:mb-14"
             id="sobre-container"
         >
             <div
@@ -17,6 +17,48 @@
                 />
             </div>
         </div>
+
+        <!-- 📖 VERSÍCULO -->
+        <!-- <div class="flex justify-center mb-8 sm:mb-12" id="versiculo-container">
+            <div
+                class="relative bg-[#4a5f7f] rounded-[40px] shadow-lg px-8 sm:px-12 py-8 w-full max-w-sm overflow-hidden"
+                id="card-versiculo"
+            >
+               
+                <img
+                    src="/imagenes/azul.png"
+                    alt="Fondo versículo"
+                    class="absolute inset-0 w-full h-full object-cover opacity-70"
+                />
+
+               
+                <div class="absolute"></div>
+
+             
+                <div class="relative z-10 text-center">
+                 
+                    <p
+                        class="font-crimson text-white text-xl sm:text-2xl leading-snug mb-4"
+                    >
+                        La cuerda de tres hilos no se rompe fácilmente
+                    </p>
+
+                  
+                    <div class="flex items-center justify-center gap-2 mb-4">
+                        <div class="w-10 h-px bg-white/40"></div>
+                        <div class="w-1.5 h-1.5 rounded-full bg-white/60"></div>
+                        <div class="w-10 h-px bg-white/40"></div>
+                    </div>
+
+               
+                    <p
+                        class="font-crimson text-white/80 text-sm uppercase tracking-[0.2em]"
+                    >
+                        Eclesiastés 4:9-12
+                    </p>
+                </div>
+            </div>
+        </div> -->
 
         <!-- 📇 TARJETAS (Dos tarjetas lado a lado - SIEMPRE en horizontal) -->
         <div
@@ -55,9 +97,14 @@
                             class="w-full flex-grow flex flex-col justify-center items-center"
                         >
                             <p
+                                class="font-crimson text-xs sm:text-sm text-[#122a4d] uppercase tracking-[0.3em] pl-[0.3em] text-center mb-1"
+                            >
+                                Sábado
+                            </p>
+                            <p
                                 class="font-charm text-5xl xs:text-6xl sm:text-7xl md:text-8xl text-[#122a4d] font-bold leading-none"
                             >
-                                02
+                                16
                             </p>
                             <p
                                 class="font-great-vibes text-3xl xs:text-4xl sm:text-5xl md:text-6xl text-[#122a4d] mt-1"
@@ -113,7 +160,7 @@
                         <h3
                             class="font-great-vibes text-3xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#122a4d] mb-2 sm:mb-3 leading-snug"
                         >
-                            Juan<br />Pablo
+                            Miguel Morón Jáuregui
                         </h3>
                         <div
                             class="text-[#122a4d] text-3xl xs:text-2xl sm:text-3xl md:text-4xl font-charm my-2 sm:my-3"
@@ -123,7 +170,7 @@
                         <h3
                             class="font-great-vibes text-3xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#122a4d] mt-2 sm:mt-3 leading-snug"
                         >
-                            Amanda<br />Verónica
+                            Virginia Aníbarro Molina
                         </h3>
                     </div>
                 </div>
@@ -143,7 +190,6 @@
            transition-all duration-300 hover:scale-110 active:scale-95"
     style="opacity: 0; pointer-events: none;"
 >
-    <!-- PAUSE (visible cuando suena música) -->
     <svg
         id="icono-pause"
         xmlns="http://www.w3.org/2000/svg"
@@ -154,7 +200,6 @@
         <rect x="6" y="4" width="4" height="16" rx="1"></rect>
         <rect x="14" y="4" width="4" height="16" rx="1"></rect>
     </svg>
-    <!-- PLAY (visible cuando está en pausa) -->
     <svg
         id="icono-play"
         xmlns="http://www.w3.org/2000/svg"
@@ -190,7 +235,7 @@
                 scrollTrigger: {
                     trigger: "#sobre-container",
                     start: "top 80%",
-                    toggleActions: "play none none none",
+                    toggleActions: "play none none reset",
                 },
             },
         );
@@ -204,6 +249,24 @@
             delay: 1.2,
         });
 
+        // ═══ ANIMACIÓN VERSÍCULO ═══
+        gsap.fromTo(
+            "#card-versiculo",
+            { opacity: 0, y: 40, scale: 0.95 },
+            {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: "#versiculo-container",
+                    start: "top 80%",
+                    toggleActions: "play none none reset",
+                },
+            },
+        );
+
         // ═══ ANIMACIÓN TARJETA IZQUIERDA ═══
         gsap.fromTo(
             "#tarjeta-izquierda",
@@ -216,7 +279,7 @@
                 scrollTrigger: {
                     trigger: "#tarjetas-container",
                     start: "top 75%",
-                    toggleActions: "play none none none",
+                    toggleActions: "play none none reset",
                 },
                 delay: 0.3,
             },
@@ -234,7 +297,7 @@
                 scrollTrigger: {
                     trigger: "#tarjetas-container",
                     start: "top 75%",
-                    toggleActions: "play none none none",
+                    toggleActions: "play none none reset",
                 },
                 delay: 0.5,
             },
@@ -247,14 +310,10 @@
         const iconoPlay = document.getElementById("icono-play");
         const iconoPause = document.getElementById("icono-pause");
 
-        // Espera a que la Portada cree el audio global
         const intervalo = setInterval(() => {
             const audio = (window as any).audioGlobal;
-
             if (audio) {
                 clearInterval(intervalo);
-
-                // Aparece con animación suave
                 gsap.to(btnAudio, {
                     opacity: 1,
                     duration: 0.5,
@@ -263,19 +322,14 @@
                         btnAudio.style.pointerEvents = "auto";
                     },
                 });
-
-                // Estado inicial: reproduciendo → mostrar pause
                 iconoPlay?.classList.add("hidden");
                 iconoPause?.classList.remove("hidden");
 
-                // Toggle play/pause
                 btnAudio.addEventListener("click", () => {
                     const audioActual = (window as any).audioGlobal;
                     const reproduciendo = (window as any)
                         .estaReproduciendoGlobal;
-
                     if (!audioActual) return;
-
                     if (reproduciendo) {
                         audioActual.pause();
                         (window as any).estaReproduciendoGlobal = false;
@@ -287,8 +341,6 @@
                         iconoPlay?.classList.add("hidden");
                         iconoPause?.classList.remove("hidden");
                     }
-
-                    // Micro-animación al hacer click
                     gsap.fromTo(
                         btnAudio,
                         { scale: 0.85 },
